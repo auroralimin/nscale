@@ -47,7 +47,7 @@ foreach(program ${programs})
 	
 endforeach(program)
 
-set(BUILD_TEST_APPLICATIONS OFF CACHE BOOL "Building Testing examples that uses the nscale library")
+set(BUILD_TEST_APPLICATIONS ON CACHE BOOL "Building Testing examples that uses the nscale library")
 
 # if build test applications is set, than build them: currently just one
 if(BUILD_TEST_APPLICATIONS)

@@ -40,9 +40,15 @@ GpuMat NeighborOperations::border(const GpuMat& img, T background, int connectiv
 	CV_Assert(std::numeric_limits<T>::is_integer);
 
 	// make border
-	GpuMat input = createContinuous(img.rows + 2, img.cols + 2, img.type());
-	copyMakeBorder(img, input, 1, 1, 1, 1, BORDER_CONSTANT, Scalar(background), stream);
+    GpuMat imgFloat;
+    img.convertTo(imgFloat, CV_32FC1); 
+	GpuMat preInput = createContinuous(img.rows + 2, img.cols + 2, CV_32FC1);
+	copyMakeBorder(imgFloat, preInput, 1, 1, 1, 1, BORDER_CONSTANT, Scalar(background), stream);
 	stream.waitForCompletion();
+
+    GpuMat input, img2;
+    preInput.convertTo(input, img.type());
+    imgFloat.convertTo(img2, img.type());
 
     GpuMat result = createContinuous(input.size(), input.type());
 
@@ -51,7 +57,7 @@ GpuMat NeighborOperations::border(const GpuMat& img, T background, int connectiv
 
     input.release();
 
-    return result(Rect(1,1, img.cols, img.rows));
+    return result(Rect(1,1, img2.cols, img2.rows));
 }
 
 #endif

@@ -4,6 +4,8 @@ PROJECT( NSCALE )
 # The version number
 set(NSCALE_VERSION_MAJOR 1 CACHE INTERNAL "major version")
 set(NSCALE_VERSION_MINOR 0 CACHE INTERNAL "minor version")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_FORCE_INLINES")
+
 
 #message(STATUS "CMAKE binary dir location: ${CMAKE_BINARY_DIR}")
 #message(STATUS "PROJECT binary dir location: ${PROJECT_BINARY_DIR}")
@@ -134,7 +136,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin CACHE PATH "Output directory 
 set(CMAKE_EXECUTABLE_SUFFIX ".exe")
 
 # Check if the user want to build test applications
-option (BUILD_TEST_APPLICATIONS "Inform whether test applications should be built" OFF)
+option (BUILD_TEST_APPLICATIONS "Inform whether test applications should be built" ON)
 # Check if the user want to build sample applications
 option (BUILD_EXAMPLE_APPLICATIONS "Inform whether sample applications should be built" OFF)
 

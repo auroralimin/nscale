@@ -56,7 +56,7 @@ if(NS_FEATURES OR NS_SEGMENT OR NS_NORMALIZATION)
     #message(STATUS "openCV lib = ${OpenCV_LIBS}")
     
     #### CUDA
-    set(USE_CUDA OFF CACHE BOOL "Include NVidia Cuda Runtime support")
+    set(USE_CUDA ON CACHE BOOL "Include NVidia Cuda Runtime support")
     if(USE_CUDA)
         find_package(CUDA 4.0)
         
